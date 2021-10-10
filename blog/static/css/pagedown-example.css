@@ -1,0 +1,21 @@
+.wmd-panel {
+    width: 100%;
+    margin: 0;
+}
+
+.wmd-button-bar {
+    background-color: #fff;
+}
+
+
+.wmd-preview{
+    width: 100%;
+    max-height: 400px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    margin: 20px 0 0 0;
+    /* border: 1px solid #eee; */
+    border-radius: 4px;
+    background: #fff;
+}

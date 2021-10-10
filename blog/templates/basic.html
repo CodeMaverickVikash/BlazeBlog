@@ -1,0 +1,108 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% block extra_head %}{% endblock %}
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="{% static 'css/all.css' %}">
+
+    <title>{% block title %}{% endblock %}</title>
+    {% block css %}{% endblock %}
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">Blog app</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about">About</a>
+          </li>
+          <!-- <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            {% for itm in items %}
+              <a class="dropdown-item text-capitalize" href="/{{itm.slug}}/index.htm">{{itm.category}}</a>
+            {% endfor %}
+          </div>
+        </li> -->
+          <li class="nav-item">
+            <a class="nav-link" href="/services">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contact">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/blog">Blog</a>
+          </li>
+        </ul>
+
+        <form class="form-inline my-2 my-lg-0">
+            <div id="search" style="display: none;"><input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></div>
+            <i id="times" class="fas fa-times" style="color: white; cursor: pointer; display: none;"></i>
+            <i class="fas fa-search" id="click" style="color: white; cursor: pointer;"></i>
+          </form>
+        
+        
+        {% if user.is_authenticated %}
+        <span class="text-white mx-2">Welcome {{request.user}}</span>
+        <a href="/logout" class="btn btn-success ml-2">Logout</a>
+        {% else %}
+        <a href="/login" class="btn btn-success ml-2">Login</a>
+        {% endif %}
+
+      </div>
+    </nav>
+
+    {% block body %}{% endblock %}
+
+    {% block footer %}{% endblock %}
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!-- jquery file -->
+    <!-- <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script> -->
+
+    {% block js %}{% endblock %}
+
+    <script>
+      var click = document.getElementById('click');
+      var search = document.getElementById('search');
+      var times = document.getElementById('times');
+      click.addEventListener("click", ()=>{
+        if(search.style.display === "block"){
+          search.style.display = "none";
+        }else{
+          search.style.display = "block";
+          click.style.display = "none";
+          times.style.display = "block";
+        }
+      });
+
+      times.addEventListener("click", ()=>{
+        times.style.display = "none";
+        search.style.display = "none";
+        click.style.display = "block";
+      });
+    </script>
+  </body>
+</html>
