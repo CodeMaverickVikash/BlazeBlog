@@ -22,7 +22,6 @@ urlpatterns = [
     path('about/', about, name="about"),
     path('services/', services),
     path('contact/', contact, name="contact"),
-    path('blog/', blogmg),
     path('signup/', handlesignup, name="signup"),
     path('login/', handlelogin, name="login"),
     path('logout/', handlelogout, name="logout"),

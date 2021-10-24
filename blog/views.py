@@ -19,6 +19,7 @@ def about(request):
 def services(request):
     return render(request, 'services.html')
 
+# Contact page
 def contact(request):
     if request.method=='GET':
         return render(request, 'contact.html')
@@ -36,9 +37,6 @@ def contact(request):
         contact_obj.save()
 
         # return redirect('/?name2='+full_name)
-
-def blogmg(request):
-    return render(request, 'blog.html')
 
 def handlesignup(request):
     
@@ -133,6 +131,7 @@ def ask(request):
 
 # from .forms import AnswerForm
 def blogPostDetails(request, cat, slug):
+    # print(cat)
     mk = request.build_absolute_uri()
     print(mk)
     que = BlogPost.objects.filter(slug=slug)
@@ -152,4 +151,4 @@ def blogPostDetails(request, cat, slug):
     #     ans_obj.que_slug = slug
     #     ans_obj.save()
 
-    return render(request, 'answer.html', {'que': que, 'fetchOnUrl':mk})
+    return render(request, 'answer.html', {'que': que, 'fetchOnUrl':mk, 'cat': cat})
